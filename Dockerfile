@@ -68,7 +68,8 @@ COPY supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 RUN mkdir -p /var/www/html
 COPY app/index.php /var/www/html/index.php
 WORKDIR /var/www/html
-EXPOSE 8080 443
+# EXPOSE 80 443
+EXPOSE 8080 80
 
 # Script Installation
 COPY run.sh /run.sh

@@ -47,6 +47,7 @@ RUN apk --no-cache --update add \
     && printf "\n\n\n\n" | pecl install -o -f redis \
     && docker-php-ext-enable redis \
     && docker-php-ext-enable sockets \
+    && docker-php-ext-install mysqli && docker-php-ext-enable mysqli
     && pecl install msgpack && docker-php-ext-enable msgpack \
     && pecl install igbinary && docker-php-ext-enable igbinary \
     && printf "\n\n\n\n\n\n\n\n\n\n" | pecl install memcached \

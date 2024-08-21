@@ -262,7 +262,8 @@ Build Image
 
     docker build -t my-nginx-php .
 
-docker-compose.yml for db and phpmyadmin:
+##docker-compose.yml for db and phpmyadmin:
+```yaml
   version: '3.1'
 
   services:
@@ -301,8 +302,10 @@ docker-compose.yml for db and phpmyadmin:
   
   volumes:
     mysql_data:
+```
 
-php test function:
+##php test function:
+```php
   $servername = "db";  // Replace with your MySQL server address
   $username = "root";         // Replace with your MySQL username
   $password = "root_password"; // Replace with your MySQL password
@@ -320,3 +323,4 @@ php test function:
   
   // Close the connection
   $conn->close();
+```

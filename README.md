@@ -261,3 +261,62 @@ Create a Dockerfile
 Build Image
 
     docker build -t my-nginx-php .
+
+docker-compose.yml for db and phpmyadmin:
+  version: '3.1'
+
+  services:
+    db:
+      image: mysql:8.0
+      container_name: mysql_db
+      environment:
+        MYSQL_ROOT_PASSWORD: root_password
+        MYSQL_DATABASE: app_db
+        MYSQL_USER: user
+        MYSQL_PASSWORD: user_password
+      ports:
+        - "3306:3306"
+      volumes:
+        - mysql_data:/var/lib/mysql
+      networks:
+        - db_network
+  
+    phpmyadmin:
+      image: phpmyadmin/phpmyadmin
+      container_name: phpmyadmin
+      environment:
+        PMA_HOST: db
+        PMA_USER: user
+        PMA_PASSWORD: user_password
+      ports:
+        - "8080:80"
+      networks:
+        - db_network
+      depends_on:
+        - db
+  
+  networks:
+    db_network:
+      driver: bridge
+  
+  volumes:
+    mysql_data:
+
+php test function:
+  $servername = "db";  // Replace with your MySQL server address
+  $username = "root";         // Replace with your MySQL username
+  $password = "root_password"; // Replace with your MySQL password
+  $dbname = "app_db";         // Replace with your MySQL database name
+  
+  // Create connection
+  $conn = new mysqli($servername, $username, $password, $dbname);
+  
+  // Check connection
+  if ($conn->connect_error) {
+      die("Connection failed: " . $conn->connect_error);
+  } else {
+      echo "Connected successfully to the database.";
+  }
+  
+  // Close the connection
+  $conn->close();

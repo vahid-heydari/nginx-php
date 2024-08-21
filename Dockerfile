@@ -79,7 +79,7 @@ RUN chmod a+x /run.sh
 RUN chown -R nobody:nobody /var/www/html /run /var/lib/nginx /var/log/nginx /usr/local/bin/composer /etc/nginx/http.d /usr/local/etc/php
 
 # Switch to non-root user
-USER root
+USER nobody
 
 # Run Script
 CMD ["/run.sh"]

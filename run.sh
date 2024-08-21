@@ -2,9 +2,9 @@
 
 # Set Custom Webroot
 if [ ! -z "$WEBROOT" ]; then
- sed -i "s#root /var/www/bits;#root ${WEBROOT};#g" /etc/nginx/http.d/default.conf
+ sed -i "s#root /var/www/html;#root ${WEBROOT};#g" /etc/nginx/http.d/default.conf
 else
- WEBROOT=/var/www/bits
+ WEBROOT=/var/www/html
 fi
 
 # Increase the memory_limit
@@ -30,9 +30,9 @@ fi
 
 # Run custom scripts
 if [[ "$RUN_SCRIPTS" == "1" ]] ; then
-  if [ -d "/var/www/bits/scripts/" ]; then
-    chmod -Rf 750 /var/www/bits/scripts/*; sync;
-    for i in `ls /var/www/bits/scripts/`; do /var/www/bits/scripts/$i ; done
+  if [ -d "/var/www/html/scripts/" ]; then
+    chmod -Rf 750 /var/www/html/scripts/*; sync;
+    for i in `ls /var/www/html/scripts/`; do /var/www/html/scripts/$i ; done
   else
     echo "Can't find script directory"
   fi

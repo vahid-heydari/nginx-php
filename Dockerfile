@@ -24,6 +24,11 @@ COPY php/www.conf /usr/local/etc/php-fpm.d/www.conf
 RUN apk --no-cache --update add \
     bash \
     curl \
+    vim \
+    nano \
+    redis-server \
+    systemd \
+    net-tools \
     nginx \
     supervisor \
     && curl http://getcomposer.org/installer | php -- --install-dir=/usr/local/bin/ --filename=composer \

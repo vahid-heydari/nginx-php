@@ -26,8 +26,8 @@ RUN apk --no-cache --update add \
     curl \
     vim \
     nano \
-    redis-server \
-    systemd \
+    redis \
+    openrc \
     net-tools \
     nginx \
     supervisor \

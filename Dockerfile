@@ -64,10 +64,10 @@ COPY nginx/http.d/default.conf /etc/nginx/http.d/default.conf
 COPY supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Setup Document Root
-RUN rm -rf /var/www/html && rm -rf /var/www/localhost
-RUN mkdir -p /var/www/bits
-COPY app/index.php /var/www/bits/index.php
-WORKDIR /var/www/bits
+#RUN rm -rf /var/www/html && rm -rf /var/www/localhost
+RUN mkdir -p /var/www/html
+COPY app/index.php /var/www/html/index.php
+WORKDIR /var/www/html
 EXPOSE 80 443
 
 # Script Installation
@@ -75,7 +75,7 @@ COPY run.sh /run.sh
 RUN chmod a+x /run.sh
 
 # Make sure files/folders run under the nobody user
-RUN chown -R nobody:nobody /var/www/bits /run /var/lib/nginx /var/log/nginx /usr/local/bin/composer /etc/nginx/http.d /usr/local/etc/php
+RUN chown -R nobody:nobody /var/www/html /run /var/lib/nginx /var/log/nginx /usr/local/bin/composer /etc/nginx/http.d /usr/local/etc/php
 
 # Switch to non-root user
 USER nobody
